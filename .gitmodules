@@ -1,0 +1,48 @@
+[submodule "khrysalis"]
+	path = khrysalis
+	url = https://github.com/lightningkite/khrysalis.git
+[submodule "butterfly-qr-ios"]
+	path = butterfly-qr-ios
+	url = https://github.com/lightningkite/butterfly-qr-ios.git
+[submodule "butterfly-web"]
+	path = butterfly-web
+	url = https://github.com/lightningkite/butterfly-web.git
+[submodule "butterfly-maps-web-leaflet"]
+	path = butterfly-maps-web-leaflet
+	url = https://github.com/lightningkite/butterfly-maps-web-leaflet.git
+[submodule "butterfly-ios"]
+	path = butterfly-ios
+	url = https://github.com/lightningkite/butterfly-ios.git
+[submodule "butterfly-maps-ios"]
+	path = butterfly-maps-ios
+	url = https://github.com/lightningkite/butterfly-maps-ios.git
+[submodule "butterfly-maps-android"]
+	path = butterfly-maps-android
+	url = https://github.com/lightningkite/butterfly-maps-android.git
+[submodule "butterfly-qr-android"]
+	path = butterfly-qr-android
+	url = https://github.com/lightningkite/butterfly-qr-android.git
+[submodule "butterfly-bluetooth-android"]
+	path = butterfly-bluetooth-android
+	url = https://github.com/lightningkite/butterfly-bluetooth-android.git
+[submodule "butterfly-fcm-ios"]
+	path = butterfly-fcm-ios
+	url = https://github.com/lightningkite/butterfly-fcm-ios.git
+[submodule "butterfly-bluetooth-ios"]
+	path = butterfly-bluetooth-ios
+	url = https://github.com/lightningkite/butterfly-bluetooth-ios.git
+[submodule "butterfly-fcm-android"]
+	path = butterfly-fcm-android
+	url = https://github.com/lightningkite/butterfly-fcm-android.git
+[submodule "butterfly-android"]
+	path = butterfly-android
+	url = https://github.com/lightningkite/butterfly-android.git
+[submodule "butterfly-fcm-web"]
+	path = butterfly-fcm-web
+	url = https://github.com/lightningkite/butterfly-fcm-web.git
+[submodule "butterfly-maps-web-google"]
+	path = butterfly-maps-web-google
+	url = https://github.com/lightningkite/butterfly-maps-web-google.git
+[submodule "butterfly-maps-ios-google"]
+	path = butterfly-maps-ios-google
+	url = https://github.com/lightningkite/butterfly-maps-ios-google.git
