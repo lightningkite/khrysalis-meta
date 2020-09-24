@@ -30,13 +30,11 @@ fun main() {
             if(it.name.contains(".json")) return@forEach
             if(it.isFile) {
                 val text = it.readText()
-                if (text.substring(0, min(text.length, 200)).all { it in ' '..'~' || it.isWhitespace() }){
-                    println("Will run replacements in ${it.relativeTo(metaFolder)} ")
-                    it.writeText(it.readText()
-                            .replace("khrysalis", "butterfly")
-                            .replace("Khrysalis", "Butterfly")
-                            .replace("KHRYSALIS", "BUTTERFLY"))
-                }
+                println("Will run replacements in ${it.relativeTo(metaFolder)} ")
+                it.writeText(it.readText()
+                        .replace("khrysalis", "butterfly")
+                        .replace("Khrysalis", "Butterfly")
+                        .replace("KHRYSALIS", "BUTTERFLY"))
             }
             if(it.name.contains("khrysalis", true)) {
                 val newName = it.name
