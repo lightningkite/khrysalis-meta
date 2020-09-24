@@ -6,6 +6,7 @@ import org.eclipse.jgit.transport.URIish
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider
 import org.kohsuke.github.GitHub
 import java.io.File
+import kotlin.math.min
 
 val github = GitHub.connect()
 val githubToken = File(System.getProperty("user.home")).resolve(".github").readText().substringAfter('=')
@@ -23,7 +24,29 @@ fun main() {
     val lkTeam = github.myTeams["lightningkite"]!!.find { it.name.contains("develop", true) }!!
 
     for(folder in butterflyFolders){
-        println("git submodule add https://github.com/lightningkite/${folder.name}.git ${folder.name}")
+        folder.walkBottomUp().filter { !it.path.contains("/.") && !it.path.contains("Pods/") }.forEach {
+            if(it.name.contains(".gradle")) return@forEach
+            if(it.name.contains(".class")) return@forEach
+            if(it.name.contains(".json")) return@forEach
+            if(it.isFile) {
+                val text = it.readText()
+                if (text.substring(0, min(text.length, 200)).all { it in ' '..'~' || it.isWhitespace() }){
+                    println("Will run replacements in ${it.relativeTo(metaFolder)} ")
+                    it.writeText(it.readText()
+                            .replace("khrysalis", "butterfly")
+                            .replace("Khrysalis", "Butterfly")
+                            .replace("KHRYSALIS", "BUTTERFLY"))
+                }
+            }
+            if(it.name.contains("khrysalis", true)) {
+                val newName = it.name
+                        .replace("khrysalis", "butterfly")
+                        .replace("Khrysalis", "Butterfly")
+                        .replace("KHRYSALIS", "BUTTERFLY")
+                println("Will rename ${it.relativeTo(metaFolder)} to ${it.parentFile.resolve(newName).relativeTo(metaFolder)}")
+                it.renameTo(it.parentFile.resolve(newName))
+            }
+        }
     }
 
 //    for (folder in butterflyFolders) {
