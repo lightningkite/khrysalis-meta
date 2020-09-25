@@ -23,29 +23,40 @@ fun main() {
     val lkOrg = github.myOrganizations["lightningkite"]!!
     val lkTeam = github.myTeams["lightningkite"]!!.find { it.name.contains("develop", true) }!!
 
-    for(folder in butterflyFolders){
-        folder.walkBottomUp().filter { !it.path.contains("/.") && !it.path.contains("Pods/") }.forEach {
-            if(it.name.contains(".gradle")) return@forEach
-            if(it.name.contains(".class")) return@forEach
-            if(it.name.contains(".json")) return@forEach
-            if(it.isFile) {
-                val text = it.readText()
-                println("Will run replacements in ${it.relativeTo(metaFolder)} ")
-                it.writeText(it.readText()
-                        .replace("khrysalis", "butterfly")
-                        .replace("Khrysalis", "Butterfly")
-                        .replace("KHRYSALIS", "BUTTERFLY"))
+    butterflyFolders
+            .filter { it.name.contains("android", true) }
+            .forEach {
+                it.walkBottomUp()
+                        .filter { it.name.endsWith(".shared.kt") }
+                        .forEach {
+                            it.writeText("//! This file is Khrysalis compatible.\n" + it.readText())
+                            it.renameTo(it.parentFile.resolve(it.name.replace(".shared", "")))
+                        }
             }
-            if(it.name.contains("khrysalis", true)) {
-                val newName = it.name
-                        .replace("khrysalis", "butterfly")
-                        .replace("Khrysalis", "Butterfly")
-                        .replace("KHRYSALIS", "BUTTERFLY")
-                println("Will rename ${it.relativeTo(metaFolder)} to ${it.parentFile.resolve(newName).relativeTo(metaFolder)}")
-                it.renameTo(it.parentFile.resolve(newName))
-            }
-        }
-    }
+
+//    for(folder in butterflyFolders){
+//        folder.walkBottomUp().filter { !it.path.contains("/.") && !it.path.contains("Pods/") }.forEach {
+//            if(it.name.contains(".gradle")) return@forEach
+//            if(it.name.contains(".class")) return@forEach
+//            if(it.name.contains(".json")) return@forEach
+//            if(it.isFile) {
+//                val text = it.readText()
+//                println("Will run replacements in ${it.relativeTo(metaFolder)} ")
+//                it.writeText(it.readText()
+//                        .replace("khrysalis", "butterfly")
+//                        .replace("Khrysalis", "Butterfly")
+//                        .replace("KHRYSALIS", "BUTTERFLY"))
+//            }
+//            if(it.name.contains("khrysalis", true)) {
+//                val newName = it.name
+//                        .replace("khrysalis", "butterfly")
+//                        .replace("Khrysalis", "Butterfly")
+//                        .replace("KHRYSALIS", "BUTTERFLY")
+//                println("Will rename ${it.relativeTo(metaFolder)} to ${it.parentFile.resolve(newName).relativeTo(metaFolder)}")
+//                it.renameTo(it.parentFile.resolve(newName))
+//            }
+//        }
+//    }
 
 //    for (folder in butterflyFolders) {
 //        folder.resolve(".gitignore").writeText("""
