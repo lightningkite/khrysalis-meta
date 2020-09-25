@@ -24,13 +24,14 @@ fun main() {
     val lkTeam = github.myTeams["lightningkite"]!!.find { it.name.contains("develop", true) }!!
 
     butterflyFolders
-            .filter { it.name.contains("android", true) }
+            .filter { it.name.contains("ios", true) }
             .forEach {
                 it.walkBottomUp()
-                        .filter { it.name.endsWith(".shared.kt") }
+                        .filter { it.name.contains(".actual") }
                         .forEach {
-                            it.writeText("//! This file is Khrysalis compatible.\n" + it.readText())
-                            it.renameTo(it.parentFile.resolve(it.name.replace(".shared", "")))
+                            val dest = it.parentFile.resolve(it.name.replace(".actual", ""))
+                            if(dest.exists()) throw Exception()
+                            it.renameTo(dest)
                         }
             }
 
