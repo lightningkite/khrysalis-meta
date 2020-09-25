@@ -24,13 +24,13 @@ fun main() {
     val lkTeam = github.myTeams["lightningkite"]!!.find { it.name.contains("develop", true) }!!
 
     butterflyFolders
-            .filter { it.name.contains("ios", true) }
+            .filter { it.name.contains("web", true) }
             .forEach {
                 it.walkBottomUp()
-                        .filter { it.name.contains(".actual") }
+                        .filter { it.name.endsWith(".actual.ts") }
                         .forEach {
                             val dest = it.parentFile.resolve(it.name.replace(".actual", ""))
-                            if(dest.exists()) throw Exception()
+                            if(dest.exists()) throw Exception("Name $dest already taken")
                             it.renameTo(dest)
                         }
             }
