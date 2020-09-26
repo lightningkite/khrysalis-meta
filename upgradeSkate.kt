@@ -4,9 +4,10 @@ fun main(){
     println("Enter folder:")
     val folder: File = File(readLine()!!)
 
-    val widgetFix =
+    val widgetFix = Regex("com\\.lightningkite\\.butterfly\\.([a-zA-Z]+\\.)*")
 
     folder.walkBottomUp()
+            .filter { !it.path.contains("node_modules") && !it.path.contains(".git") }
             .forEach {
                 if(it.isFile){
                     it.writeText(it.readText()
@@ -14,13 +15,29 @@ fun main(){
                             .replace("khrysalis", "butterfly")
                             .replace("KHRYSALIS", "BUTTERFLY")
                     )
-                    if(it.extension == "xml") {
-                        it.writeText(it.readText().replace())
+                    if(it.extension == "xml" && it.path.contains("layout")) {
+                        it.writeText(it.readText().replace(widgetFix, "com.lightningkite.butterfly.views.widget."))
                     }
                 }
                 if(it.name.contains(".shared")) {
                     val newName = it.parentFile.resolve(it.name.replace(".shared", ""))
                     it.writeText("//! This file will translate using Khrysalis.\n" + it.readText())
+                    if(!newName.exists()) {
+                        it.renameTo(newName)
+                    }
+                }
+                if(it.name.contains(".actual")) {
+                    val newName = it.parentFile.resolve(it.name.replace(".actual", ""))
+                    if(!newName.exists()) {
+                        it.renameTo(newName)
+                    }
+                }
+                if(it.name.contains("khrysalis", true)) {
+                    val newName = it.parentFile.resolve(it.name
+                            .replace("Khrysalis", "Butterfly")
+                            .replace("khrysalis", "butterfly")
+                            .replace("KHRYSALIS", "BUTTERFLY")
+                    )
                     if(!newName.exists()) {
                         it.renameTo(newName)
                     }
