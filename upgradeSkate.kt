@@ -6,8 +6,20 @@ fun main(){
 
     val widgetFix = Regex("com\\.lightningkite\\.butterfly\\.([a-zA-Z]+\\.)*")
 
-    folder.walkBottomUp()
-            .filter { !it.path.contains("node_modules") && !it.path.contains(".git") }
+    folder
+            .listFiles()!!
+            .asSequence()
+            .flatMap { it.walkBottomUp() }
+            .filter {
+                !it.path.contains("node_modules") &&
+                        !it.path.contains(".git")  &&
+                        !it.path.contains("Pods")  &&
+                        it.extension != "png"  &&
+                        it.extension != "svg"  &&
+                        it.extension != "bin"  &&
+                        !it.path.contains("Pods")  &&
+                        !it.path.contains("build/")
+            }
             .forEach {
                 if(it.isFile){
                     it.writeText(it.readText()
@@ -22,9 +34,9 @@ fun main(){
                 if(it.name.contains(".shared")) {
                     val newName = it.parentFile.resolve(it.name.replace(".shared", ""))
                     it.writeText("//! This file will translate using Khrysalis.\n" + it.readText())
-                    if(!newName.exists()) {
+//                    if(!newName.exists()) {
                         it.renameTo(newName)
-                    }
+//                    }
                 }
                 if(it.name.contains(".actual")) {
                     val newName = it.parentFile.resolve(it.name.replace(".actual", ""))
