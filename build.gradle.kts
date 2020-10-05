@@ -28,7 +28,10 @@ subprojects {
         apply(plugin = "com.lightningkite.khrysalis")
 
         configure<KhrysalisPluginExtension> {
-            val p = baseName.split('-').joinToString("") { it.capitalize() }
+            val p = when(baseName){
+                "butterfly-fcm" -> "ButterflyFCM"
+                else -> baseName.split('-').joinToString("") { it.capitalize() }
+            }
             println("Configured name is $p")
             projectName = p
             organizationName = "Lightning Kite"

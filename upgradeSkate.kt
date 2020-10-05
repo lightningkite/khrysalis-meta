@@ -21,7 +21,7 @@ fun main(){
                         !it.path.contains("build/")
             }
             .forEach {
-                if(it.isFile){
+                if(it.isFile && it.name != "AndroidManifest.xml" && !it.name.contains("gradle", true)){
                     it.writeText(it.readText()
                             .replace("Khrysalis", "Butterfly")
                             .replace("khrysalis", "butterfly")
@@ -40,16 +40,6 @@ fun main(){
                 }
                 if(it.name.contains(".actual")) {
                     val newName = it.parentFile.resolve(it.name.replace(".actual", ""))
-                    if(!newName.exists()) {
-                        it.renameTo(newName)
-                    }
-                }
-                if(it.name.contains("khrysalis", true)) {
-                    val newName = it.parentFile.resolve(it.name
-                            .replace("Khrysalis", "Butterfly")
-                            .replace("khrysalis", "butterfly")
-                            .replace("KHRYSALIS", "BUTTERFLY")
-                    )
                     if(!newName.exists()) {
                         it.renameTo(newName)
                     }
