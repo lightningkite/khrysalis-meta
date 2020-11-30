@@ -1,5 +1,6 @@
 
 
+git submodule init
 git submodule update
 
 cd butterfly-android || exit
