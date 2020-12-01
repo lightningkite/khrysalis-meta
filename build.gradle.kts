@@ -21,22 +21,22 @@ buildscript {
     }
 }
 
-//subprojects {
-//    if(this.name.contains("butterfly")) {
-//        val baseName = this.name.removeSuffix("-android")
-//
-//        apply(plugin = "com.lightningkite.khrysalis")
-//
-//        configure<KhrysalisPluginExtension> {
-//            val p = when(baseName){
-//                "butterfly-fcm" -> "ButterflyFCM"
-//                else -> baseName.split('-').joinToString("") { it.capitalize() }
-//            }
-//            println("Configured name is $p")
-//            projectName = p
-//            organizationName = "Lightning Kite"
-//            overrideIosFolder = project.projectDir.resolve("../../$baseName-ios").toString()
-//            overrideWebFolder = project.projectDir.resolve("../../$baseName-web").toString()
-//        }
-//    }
-//}
+subprojects {
+    if(this.name.contains("butterfly")) {
+        val baseName = this.name.removeSuffix("-android")
+
+        apply(plugin = "com.lightningkite.khrysalis")
+
+        configure<KhrysalisPluginExtension> {
+            val p = when(baseName){
+                "butterfly-fcm" -> "ButterflyFCM"
+                else -> baseName.split('-').joinToString("") { it.capitalize() }
+            }
+            println("Configured name is $p")
+            projectName = p
+            organizationName = "Lightning Kite"
+            overrideIosFolder = project.projectDir.resolve("../../$baseName-ios").toString()
+            overrideWebFolder = project.projectDir.resolve("../../$baseName-web").toString()
+        }
+    }
+}

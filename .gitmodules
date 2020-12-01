@@ -46,3 +46,6 @@
 [submodule "butterfly-maps-ios-google"]
 	path = butterfly-maps-ios-google
 	url = https://github.com/lightningkite/butterfly-maps-ios-google.git
+[submodule "butterfly-bluetooth-web"]
+	path = butterfly-bluetooth-web
+	url = https://github.com/lightningkite/butterfly-bluetooth-web.git
