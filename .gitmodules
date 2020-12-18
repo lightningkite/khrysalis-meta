@@ -37,6 +37,7 @@
 [submodule "butterfly-android"]
 	path = butterfly-android
 	url = https://github.com/lightningkite/butterfly-android.git
+	branch = master
 [submodule "butterfly-fcm-web"]
 	path = butterfly-fcm-web
 	url = https://github.com/lightningkite/butterfly-fcm-web.git
