@@ -1,9 +1,11 @@
 #!/bin/bash
 
+cd khrysalis
 ./gradlew --configure-on-demand kotlin-compiler-plugin-common:publishToMavenLocal
 ./gradlew --configure-on-demand kotlin-compiler-plugin-typescript:publishToMavenLocal
 ./gradlew --configure-on-demand kotlin-compiler-plugin-swift:publishToMavenLocal
 ./gradlew --configure-on-demand plugin:publishToMavenLocal
+cd ..
 ./gradlew publishToMavenLocal
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
