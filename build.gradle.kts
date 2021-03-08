@@ -29,6 +29,7 @@ subprojects {
 
         configure<KhrysalisPluginExtension> {
             val p = when(baseName){
+                "butterfly" -> "LKButterfly"
                 "butterfly-fcm" -> "ButterflyFCM"
                 else -> baseName.split('-').joinToString("") { it.capitalize() }
             }
