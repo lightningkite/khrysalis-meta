@@ -4,14 +4,14 @@ version = "1.0-SNAPSHOT"
 
 
 buildscript {
-    val kotlin_version = "1.5.21"
+    val kotlin_version = "1.5.30"
     repositories {
         google()
         mavenCentral()
         mavenLocal()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.1")
+        classpath("com.android.tools.build:gradle:4.0.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         classpath("com.lightningkite.khrysalis:plugin:0.1.0")
 
