@@ -18,6 +18,7 @@ fun includeDeep(string: String, folder: String = string){
 includeDeep("kotlin-compiler-plugin-common", "khrysalis")
 includeDeep("kotlin-compiler-plugin-swift", "khrysalis")
 includeDeep("kotlin-compiler-plugin-typescript", "khrysalis")
+includeDeep("jvm-runtime", "khrysalis")
 includeDeep("plugin", "khrysalis")
 includeDeep("butterfly-android")
 includeDeep("butterfly-bluetooth-android")
